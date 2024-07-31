@@ -21,8 +21,9 @@ app.use(cookieParser())
 app.use(urlencoded({extended:true}));
 app.use(json());
 const corsOptions = {
-    origin: "https://netflixfrontend.vercel.app",
+    origin: "https://netflix-frontend-tau-orcin.vercel.app",
     credentials: true,
+    
 }
 app.use(cors(corsOptions))
 app.get('/', (req,res)=>{
