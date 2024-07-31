@@ -8,7 +8,7 @@ import {connectDB} from './connectDB.js'
 
 
 config({
-    path:'.env'
+    path:'./env'
 })
 
 const app = express();
