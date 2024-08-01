@@ -21,17 +21,21 @@ app.use(cookieParser())
 app.use(urlencoded({extended:true}));
 app.use(json());
 const corsOptions = {
-    origin: 'https://netflix-frontend-tau-orcin.vercel.app',
-    // credentials: true,
-    // optionsSuccessStatus: 200,
+    Origin: 'https://netflix-frontend-tau-orcin.vercel.app',
+    Credentials: true,
+    optionsSuccessStatus: 200,
 }
 app.use(cors(corsOptions))
 app.options('*', cors(corsOptions));
 app.get('/', (req,res)=>{
     res.send("Welcome to the server")
 })
-app.use('/user', router)
-// res.send('Access-Control-Allow-Origin', 'https://netflix-frontend-tau-orcin.vercel.app')
+const addCorsHeader = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://netflix-frontend-tau-orcin.vercel.app');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+  };
+app.use('/user', addCorsHeader, router)
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is connected to the localhost at port ${process.env.PORT}`);
 })
