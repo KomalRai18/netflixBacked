@@ -34,6 +34,7 @@ export const handleSignup = async (req,res)=>{
     }
 }
 export const handleLogin = async (req, res)=>{
+    res.header('Access-Control-Allow-Credentials', 'true');
     const {email, password} = await req.body;
     if(!email || !password) {return res.status(400).json({msg:"Enter all fields"})}
     const user = await userSchema.findOne({email})
